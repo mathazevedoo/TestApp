@@ -9,13 +9,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+
+import java.util.Scanner;
 
 public class LocationActivity extends AppCompatActivity {
 
     Dialog sucessDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +27,7 @@ public class LocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_location);
         sucessDialog = new Dialog(this);
         EditText txtCidade = (EditText) findViewById(R.id.txtCidade);
-        txtCidade.setFilters(new InputFilter[] {
-                new InputFilter() {
-                    @Override
-                    public CharSequence filter(CharSequence cs, int start,
-                                               int end, Spanned spanned, int dStart, int dEnd) {
-                        // TODO Auto-generated method stub
-                        if(cs.equals("")){ // for backspace
-                            return cs;
-                        }
-                        if(cs.toString().matches("[a-zA-Z ]+")){
-                            return cs;
-                        }
-                        return "";
-                    }
-                }
-        });
+        EditText txtCpf = (EditText) findViewById(R.id.txtCpf);
 
     EditText txtNome = (EditText) findViewById(R.id.txtNome);
         txtNome.setFilters(new InputFilter[] {
@@ -60,12 +49,18 @@ public class LocationActivity extends AppCompatActivity {
 }
    //chamada de activity inicial e encerrar classe atual.
     public void proxlayout(){
-        startActivity(new Intent(this,com.location.inoarb.StartActivity.class));
+        Intent intent = new Intent(this,com.location.inoarb.StartActivity.class);
+        ActivityOptionsCompat activityOptionCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.mover_direita);
+        ActivityCompat.startActivity(this, intent, activityOptionCompat.toBundle());
+        //startActivity(new Intent(this,com.location.inoarb.StartActivity.class));
         finish();
     }
 
-
-
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.mover_esquerda, R.anim.fade_out);
+    }
 
     public void ShowPopup (View v){
         ImageView imgClose;
@@ -94,7 +89,4 @@ public class LocationActivity extends AppCompatActivity {
 
 
     }
-
-
-
 }

@@ -5,14 +5,47 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/background1">
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:layout_width="370dp"
+        android:layout_height="77dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:orientation="horizontal"
+            android:paddingLeft="25dp">
+
+
+        <ImageView
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:src="@drawable/logo2" />
+
+            <TextView
+                android:id="@+id/txtTitle"
+                android:layout_width="310dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="10dp"
+                android:text="LOCALIZAÇÃO"
+                android:textColor="#494846"
+                app:fontFamily="@font/open_sans"
+                android:textSize="27dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="360dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="50dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -32,8 +65,9 @@
                 android:layout_width="275dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:hint="Endereço"
-                android:paddingLeft="20dp" />
+                android:hint="Endereço, Numero"
+                android:paddingLeft="20dp"
+                android:inputType="text"/>
         </LinearLayout>
 
         <LinearLayout
@@ -54,6 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:hint="Cidade"
+                android:inputType="text"
                 android:paddingLeft="20dp" />
         </LinearLayout>
 
@@ -70,14 +105,15 @@
                 android:layout_height="36dp"
                 android:src="@drawable/ic_my_location_black_24dp" />
 
-            <EditText
+            <com.santalu.maskedittext.MaskEditText
                 android:id="@+id/txtCep"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:hint="Cep"
-                android:inputType="number"
-                android:paddingLeft="20dp" />
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                app:met_mask="#####-###"/>
         </LinearLayout>
 
         <LinearLayout
@@ -98,7 +134,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:hint="Nome"
-                android:paddingLeft="20dp" />
+                android:inputType="textPersonName"
+                android:paddingLeft="20dp"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -113,13 +151,15 @@
                 android:layout_height="36dp"
                 android:src="@drawable/cpf" />
 
-            <EditText
+            <com.santalu.maskedittext.MaskEditText
                 android:id="@+id/txtCpf"
                 android:layout_width="246dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:hint="cpf"
-                android:paddingLeft="20dp" />
+                android:hint="Cpf"
+                android:inputType="phone"
+                android:paddingLeft="20dp"
+                app:met_mask="###.###.###-##"/>
         </LinearLayout>
 
 
@@ -135,14 +175,15 @@
                 android:layout_height="36dp"
                 android:src="@drawable/phone" />
 
-            <EditText
+            <com.santalu.maskedittext.MaskEditText
                 android:id="@+id/txtTelefone"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:hint="Telefone"
                 android:inputType="phone"
-                android:paddingLeft="20dp" />
+                android:paddingLeft="20dp"
+                app:met_mask="+55 (##) #####-####"/>
         </LinearLayout>
     </LinearLayout>
 
@@ -153,10 +194,10 @@
         android:layout_gravity="center"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:background="@drawable/custom_button"
+        android:background="@drawable/button_white"
         android:text="Confirmar Ocorrência"
         android:onClick="ShowPopup"
         android:textAllCaps="false"

@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.FileProvider;
 
 import java.io.File;
@@ -89,8 +91,17 @@ public class CameraActivity   extends AppCompatActivity {
     }
 
     public void proxlayout(View view){
-        startActivity(new Intent(this,com.location.inoarb.LocationActivity.class));
+        Intent intent = new Intent(this,com.location.inoarb.LocationActivity.class);
+        ActivityOptionsCompat activityOptionCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.mover_direita);
+        ActivityCompat.startActivity(this, intent, activityOptionCompat.toBundle());
+        //startActivity(new Intent(this,com.location.inoarb.LocationActivity.class));
     }
 
+
+    @Override
+    public void finish(){
+        super.finish();
+        overridePendingTransition(R.anim.mover_esquerda, R.anim.fade_out);
+    }
 
 }
