@@ -29,23 +29,6 @@ public class LocationActivity extends AppCompatActivity {
         EditText txtCidade = (EditText) findViewById(R.id.txtCidade);
         EditText txtCpf = (EditText) findViewById(R.id.txtCpf);
 
-    EditText txtNome = (EditText) findViewById(R.id.txtNome);
-        txtNome.setFilters(new InputFilter[] {
-        new InputFilter() {
-            @Override
-            public CharSequence filter(CharSequence cs, int start,
-                                       int end, Spanned spanned, int dStart, int dEnd) {
-                // TODO Auto-generated method stub
-                if(cs.equals("")){ // for backspace
-                    return cs;
-                }
-                if(cs.toString().matches("[a-zA-Z ]+")){
-                    return cs;
-                }
-                return "";
-            }
-        }
-    });
 }
    //chamada de activity inicial e encerrar classe atual.
     public void proxlayout(){
