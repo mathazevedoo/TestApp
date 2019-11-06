@@ -26,8 +26,9 @@ public class LocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
         sucessDialog = new Dialog(this);
+        Validador validador = new Validador();
         EditText txtCidade = (EditText) findViewById(R.id.txtCidade);
-        EditText txtCpf = (EditText) findViewById(R.id.txtCpf);
+
 
 }
    //chamada de activity inicial e encerrar classe atual.
@@ -49,27 +50,24 @@ public class LocationActivity extends AppCompatActivity {
         ImageView imgClose;
         Button btnConfirmado;
         sucessDialog.setContentView(R.layout.epic_popup_positive);
-        sucessDialog.setContentView(R.layout.epic_popup_positive);
-        sucessDialog.setContentView(R.layout.epic_popup_positive);
         imgClose = (ImageView) sucessDialog.findViewById(R.id.imgClose);
         btnConfirmado = (Button) sucessDialog.findViewById(R.id.btnOk);
         imgClose.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sucessDialog.dismiss();
-                proxlayout();
-            }
+          @Override
+           public void onClick(View v) {
+              sucessDialog.dismiss();
+           proxlayout();
+           }
         });
         sucessDialog.show();
         btnConfirmado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 sucessDialog.dismiss();
-                proxlayout();
+          proxlayout();
             }
         });
-        sucessDialog.show();
-
-
+      sucessDialog.show();
     }
 }

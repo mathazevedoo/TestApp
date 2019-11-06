@@ -60,6 +60,7 @@ public class CameraActivity   extends AppCompatActivity {
             if (requestCode == 1) {
                 Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
                 imageView.setImageBitmap(bitmap);
+              //  proxlayout();
                 btnConfirmar.setVisibility(View.VISIBLE);
             }
         }
@@ -97,6 +98,13 @@ public class CameraActivity   extends AppCompatActivity {
         //startActivity(new Intent(this,com.location.inoarb.LocationActivity.class));
     }
 
+
+    public void proxlayout(){
+        Intent intent = new Intent(this,com.location.inoarb.LocationActivity.class);
+        ActivityOptionsCompat activityOptionCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.mover_direita);
+        ActivityCompat.startActivity(this, intent, activityOptionCompat.toBundle());
+        //startActivity(new Intent(this,com.location.inoarb.LocationActivity.class));
+    }
 
     @Override
     public void finish(){
