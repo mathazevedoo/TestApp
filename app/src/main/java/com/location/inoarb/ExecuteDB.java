@@ -9,7 +9,6 @@ import javax.xml.transform.Result;
 
 public class ExecuteDB extends AsyncTask<String,Void, ResultSet> {
 
-
     private Connection connection;
     private String query;
 

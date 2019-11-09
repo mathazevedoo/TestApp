@@ -29,8 +29,9 @@ public class Validador {
         }
         return false;
     }
-    public static boolean validateCPF(String CPF) {
-        CPF = CPF;
+    public static boolean validateCPF(String v) {
+        String CPF;
+        CPF = v;
         if (CPF.equals("00000000000") || CPF.equals("11111111111")
                 || CPF.equals("22222222222") || CPF.equals("33333333333")
                 || CPF.equals("44444444444") || CPF.equals("55555555555")

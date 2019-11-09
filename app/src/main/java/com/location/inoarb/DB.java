@@ -25,8 +25,6 @@ public class DB extends Default implements Runnable{
         //Todo Fechar conexao
     }
 
-
-
     //"jdbc:mysql:
     // servinoarb.mysql.database.azure.com:3306/{your_database}?useSSL=true&requireSSL=false";
     // myDbConn = DriverManager.getConnection(url, "wevertonfarias@servinoarb", {your_password});
@@ -36,13 +34,12 @@ public class DB extends Default implements Runnable{
             //Class.forName("jdbc:mysql://servinoarb.mysql.database.azure.com:3306");
             Class.forName("com.mysql.jdbc.Driver");
             this.conn = DriverManager.getConnection(this.url, this.user,this.pass);
-
         }catch(Exception e){
-            // this.
+            e.printStackTrace();
         }
     }
 
-    private void conecta(){
+    public void conecta(){
         Thread thread = new Thread(this);
         thread.start();
 
@@ -64,15 +61,16 @@ public class DB extends Default implements Runnable{
         }
     }
 
-    public ResultSet execute(String query){
-        this.conecta();
-        ResultSet resultSet = null;
-        try {
-            resultSet  = new ExecuteDB(this.conn, query).execute().get();
-        }catch(Exception e){
-            //this.status = false;
+    public ResultSet execute(String query) throws Exception{
 
+        if(this.conn == null || !this.conn.isValid(5)) {
+            this.conecta();
         }
+
+        ResultSet resultSet = null;
+
+        resultSet  = new ExecuteDB(this.conn, query).execute().get();
+
         return resultSet;
     }
 
