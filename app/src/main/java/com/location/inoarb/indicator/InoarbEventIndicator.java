@@ -2,7 +2,7 @@ package com.location.inoarb.indicator;
 
 public enum InoarbEventIndicator {
 
-    DEFAULT_EVENT("EVENTO");
+        DEFAULT_EVENT("QUEDA DE ARVORE");
 
     private String value;
 

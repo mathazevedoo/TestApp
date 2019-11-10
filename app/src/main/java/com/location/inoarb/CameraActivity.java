@@ -26,7 +26,7 @@ import java.util.Date;
 
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
-public class CameraActivity   extends AppCompatActivity {
+public class CameraActivity extends AppCompatActivity {
 
     Button btnTakePic,btnConfirmar;
     ImageView imageView;
@@ -50,9 +50,6 @@ public class CameraActivity   extends AppCompatActivity {
         imageView = findViewById(R.id.image);
         btnConfirmar = findViewById(R.id.btnConfirmar);
     }
-
-
-
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
@@ -90,16 +87,7 @@ public class CameraActivity   extends AppCompatActivity {
         }
         return image;
     }
-
     public void proxlayout(View view){
-        Intent intent = new Intent(this,com.location.inoarb.LocationActivity.class);
-        ActivityOptionsCompat activityOptionCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.mover_direita);
-        ActivityCompat.startActivity(this, intent, activityOptionCompat.toBundle());
-        //startActivity(new Intent(this,com.location.inoarb.LocationActivity.class));
-    }
-
-
-    public void proxlayout(){
         Intent intent = new Intent(this,com.location.inoarb.LocationActivity.class);
         ActivityOptionsCompat activityOptionCompat = ActivityOptionsCompat.makeCustomAnimation(getApplicationContext(), R.anim.fade_in, R.anim.mover_direita);
         ActivityCompat.startActivity(this, intent, activityOptionCompat.toBundle());
@@ -111,5 +99,4 @@ public class CameraActivity   extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.mover_esquerda, R.anim.fade_out);
     }
-
 }
