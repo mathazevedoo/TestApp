@@ -19,6 +19,9 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.content.FileProvider;
 
+import com.location.inoarb.builder.impl.InoarbImageDataClobBuilder;
+import com.location.inoarb.session.SessionAccess;
+
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -28,9 +31,9 @@ import static android.os.Environment.getExternalStoragePublicDirectory;
 
 public class CameraActivity extends AppCompatActivity {
 
-    Button btnTakePic,btnConfirmar;
-    ImageView imageView;
-    String pathToFile;
+    private Button btnTakePic,btnConfirmar;
+    private ImageView imageView;
+    private String pathToFile;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +58,16 @@ public class CameraActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
             if (requestCode == 1) {
+                InoarbImageDataClobBuilder inoarbImageDataClobBuilder = new InoarbImageDataClobBuilder();
                 Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
+
+                SessionAccess.getSessionSingleton().save("encodedImageClob",
+                        inoarbImageDataClobBuilder.build(new File(pathToFile)));
+
+                Log.d("mylog", "Clob 1-->"+inoarbImageDataClobBuilder.build(new File(pathToFile)));
+                Log.d("mylog", "Clob 2-->"+SessionAccess.getSessionSingleton().get("encodedImageClob"));
+
+
                 imageView.setImageBitmap(bitmap);
               //  proxlayout();
                 btnConfirmar.setVisibility(View.VISIBLE);

@@ -14,6 +14,7 @@ public final class InoarbRequestEventDTO implements Serializable {
     private String eventType;
     private String updateDate;
     private String imagePath;
+    private String imageClob;
 
     public String getName() {
         return name;
@@ -93,5 +94,13 @@ public final class InoarbRequestEventDTO implements Serializable {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
+    }
+
+    public String getImageClob() {
+        return imageClob;
+    }
+
+    public void setImageClob(String imageClob) {
+        this.imageClob = imageClob;
     }
 }

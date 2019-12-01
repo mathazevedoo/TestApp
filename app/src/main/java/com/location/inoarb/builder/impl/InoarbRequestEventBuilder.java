@@ -15,6 +15,7 @@ import com.location.inoarb.R;
 import com.location.inoarb.builder.Builder;
 import com.location.inoarb.dto.InoarbRequestEventDTO;
 import com.location.inoarb.indicator.InoarbEventIndicator;
+import com.location.inoarb.session.SessionAccess;
 
 import org.w3c.dom.Text;
 
@@ -30,7 +31,6 @@ public final class InoarbRequestEventBuilder implements Builder<InoarbRequestEve
     @Override
     public InoarbRequestEventDTO build(AppCompatActivity appCompatActivity) {
 
-
         final InoarbRequestEventDTO inoarbRequestEventDTO = new InoarbRequestEventDTO();
 
         final EditText txNome = (EditText) appCompatActivity.findViewById(R.id.txtNome);
@@ -39,6 +39,8 @@ public final class InoarbRequestEventBuilder implements Builder<InoarbRequestEve
         final EditText txCidade = (EditText) appCompatActivity.findViewById(R.id.txtCidade);
         final EditText txCep = (EditText) appCompatActivity.findViewById(R.id.txtCep);
         final EditText txTelefone = (EditText) appCompatActivity.findViewById(R.id.txtTelefone);
+
+        final String txImageClob = SessionAccess.getSessionSingleton().get("encodedImageClob");
 
         /*
         final ImageView imageView = (ImageView) appCompatActivity.findViewById(R.id.image);
@@ -68,9 +70,6 @@ public final class InoarbRequestEventBuilder implements Builder<InoarbRequestEve
         final SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
         final String txProcessamentoData = sdf.format(agora);
 
-        final Random rnd = new Random();
-        final String simpleImagePath = "/tmp/" + String.valueOf(rnd.nextInt(512)) + ".png";
-
         inoarbRequestEventDTO.setName(txNome.getText().toString());
         inoarbRequestEventDTO.setDocument(txCpf.getText().toString());
         inoarbRequestEventDTO.setAddress(txEndereco.getText().toString());
@@ -80,7 +79,10 @@ public final class InoarbRequestEventBuilder implements Builder<InoarbRequestEve
         inoarbRequestEventDTO.setEventDate(txProcessamentoData);
         inoarbRequestEventDTO.setUpdateDate(txProcessamentoData);
         inoarbRequestEventDTO.setEventType(InoarbEventIndicator.DEFAULT_EVENT.toString());
-        inoarbRequestEventDTO.setImagePath(simpleImagePath);
+
+        if(txImageClob != null && !txImageClob.isEmpty()) {
+            inoarbRequestEventDTO.setImageClob(txImageClob);
+        }
 
         return inoarbRequestEventDTO;
     }
